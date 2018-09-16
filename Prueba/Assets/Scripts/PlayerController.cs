@@ -6,6 +6,21 @@ public class PlayerController : NetworkBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
+    public GameObject playerCamera;
+
+    public void Start() 
+    {
+        if(isLocalPlayer) 
+        {
+            playerCamera.SetActive(true);
+        }
+        else
+        {
+            playerCamera.SetActive(false);
+        }
+            
+    }
+
     void Update()
     {
         if (!isLocalPlayer)
@@ -49,5 +64,6 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer ()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
+        Camera.main.GetComponent<PlayerCamera>().setTarget(gameObject.transform);
     }
 }

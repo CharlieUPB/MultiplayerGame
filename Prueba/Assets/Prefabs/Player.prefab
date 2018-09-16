@@ -39,10 +39,10 @@ GameObject:
   - component: {fileID: 4006110796168542}
   - component: {fileID: 20727214951160296}
   - component: {fileID: 81375534771260326}
-  - component: {fileID: 114772298945704368}
+  - component: {fileID: 114392155141456216}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,6 +536,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 114724496623974708}
   startTime: 301
+--- !u!114 &114392155141456216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172468448706126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64902c9e2645f3847b8e19657cdc3fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerTransform: {fileID: 4277114496496544}
+  SmoothFactor: 0.5
+  lookAtPlayer: 0
 --- !u!114 &114419262094107372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -550,6 +564,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1225017341675676, guid: a0d43a7e1f9007a4898c28ea0079985e,
     type: 2}
   bulletSpawn: {fileID: 4353630643498452}
+  playerCamera: {fileID: 1172468448706126}
 --- !u!114 &114421953416952414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -658,20 +673,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Time Left: 0:00'
---- !u!114 &114772298945704368
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172468448706126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64902c9e2645f3847b8e19657cdc3fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 1225448554843428}
-  SmoothFactor: 1
-  lookAtPlayer: 1
 --- !u!114 &114812278892158760
 MonoBehaviour:
   m_ObjectHideFlags: 1
