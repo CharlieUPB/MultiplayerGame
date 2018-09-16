@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -8,10 +9,14 @@ public class PlayerController : NetworkBehaviour
 
     public GameObject playerCamera;
 
-    private int playersConnected;
+    public Text numberOfPlayers;
+
+    [SyncVar]
+    public int playersConnected;
 
     public void Start() 
     {
+        
         if(isLocalPlayer) 
         {
             playerCamera.SetActive(true);
@@ -25,19 +30,17 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
+
+        if(isServer) {
+           playersConnected = NetworkServer.connections.Count;
+        }
+
+        numberOfPlayers.text = "Players: " + playersConnected; 
+
         if (!isLocalPlayer)
         {
             return;
         }
-
-        if(isServer) {
-            playersConnected =  NetworkServer.connections.Count;
-            Debug.Log("Connections: " + playersConnected);
-            if(playersConnected == 2) {
-                NetworkServer.dontListen = true;
-            }
-        }
-
 
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
