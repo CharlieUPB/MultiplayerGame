@@ -29,7 +29,7 @@ public class Health : NetworkBehaviour {
 
     void OnChangeHealth (int currentHealth )
     {
-        healthBar.sizeDelta = new Vector2(currentHealth * 2, healthBar.sizeDelta.y);
+        healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
     }
 
     [ClientRpc]
