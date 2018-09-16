@@ -8,6 +8,8 @@ public class PlayerController : NetworkBehaviour
 
     public GameObject playerCamera;
 
+    private int playersConnected;
+
     public void Start() 
     {
         if(isLocalPlayer) 
@@ -27,6 +29,15 @@ public class PlayerController : NetworkBehaviour
         {
             return;
         }
+
+        if(isServer) {
+            playersConnected =  NetworkServer.connections.Count;
+            Debug.Log("Connections: " + playersConnected);
+            if(playersConnected == 2) {
+                NetworkServer.dontListen = true;
+            }
+        }
+
 
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;

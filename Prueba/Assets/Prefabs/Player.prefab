@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4006110796168542}
   - component: {fileID: 20727214951160296}
   - component: {fileID: 81375534771260326}
-  - component: {fileID: 114392155141456216}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -115,7 +114,6 @@ GameObject:
   - component: {fileID: 223733362947067796}
   - component: {fileID: 114166497945587814}
   - component: {fileID: 114205685769692702}
-  - component: {fileID: 114439251130669390}
   m_Layer: 5
   m_Name: Healthbar Canvas
   m_TagString: Untagged
@@ -536,20 +534,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 114724496623974708}
   startTime: 301
---- !u!114 &114392155141456216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172468448706126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64902c9e2645f3847b8e19657cdc3fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 4277114496496544}
-  SmoothFactor: 0.5
-  lookAtPlayer: 0
 --- !u!114 &114419262094107372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,17 +576,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114439251130669390
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462793999561294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f963120ea934f489e9ef755917c719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114656421533665544
 MonoBehaviour:
   m_ObjectHideFlags: 1
