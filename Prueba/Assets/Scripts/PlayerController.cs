@@ -6,17 +6,21 @@ public class PlayerController : NetworkBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-
     public GameObject playerCamera;
 
     public Text numberOfPlayers;
+
+    static Animator anim;
+	public float speed = 50.0f;
+	public float rotationSpeed = 75.0f;
 
     [SyncVar]
     public int playersConnected;
 
     public void Start() 
     {
-        
+        anim = GetComponent<Animator>(); 
+
         if(isLocalPlayer) 
         {
             playerCamera.SetActive(true);
@@ -24,8 +28,7 @@ public class PlayerController : NetworkBehaviour
         else
         {
             playerCamera.SetActive(false);
-        }
-            
+        }           
     }
 
     void Update()
@@ -42,11 +45,35 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
+        float translation = Input.GetAxis("Vertical") * speed;
+		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+		translation *= Time.deltaTime;
+		rotation *= Time.deltaTime;
+
+		transform.Translate(0, 0, translation);
+		transform.Rotate(0, rotation, 0);
+
+		if(translation != 0)
+		{
+			anim.SetInteger("PlayerActions", 1);
+		}
+		/* 
+		if(Input.GetKey(KeyCode.UpArrow))
+		{
+			Debug.Log("arriba");
+			anim.SetInteger("PlayerActions", 1);
+		}	*/
+		else
+		{
+			anim.SetInteger("PlayerActions", 0);
+		}
+
+/* 
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
         transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+        transform.Translate(0, 0, z);*/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
