@@ -11,17 +11,32 @@ public class PlayerController : NetworkBehaviour
     public Text numberOfPlayers;
 
     static Animator anim;
-	public float speed = 50.0f;
-	public float rotationSpeed = 75.0f;
+	public float speed = 15.0f;
+
+    public float jumpSpeed = 100.0f;
+
+    public float gravity = 20.0f;
+
+    public CharacterController controller;
+
+    private Vector3 moveDirection = Vector3.zero;
+
+    private Vector2 mouseDirection;
+
+    private Camera mainCamera;
+
+    public float mouseSensibility = 5.0f;
 
     [SyncVar]
     public int playersConnected;
 
     public void Start() 
     {
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
+        mainCamera = Camera.main;
 
-        if(isLocalPlayer) 
+        if (isLocalPlayer) 
         {
             playerCamera.SetActive(true);
         }
@@ -45,37 +60,42 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        float translation = Input.GetAxis("Vertical") * speed;
-		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-		translation *= Time.deltaTime;
-		rotation *= Time.deltaTime;
+        Vector2 mouseChange = new Vector2 (Input.GetAxisRaw("Mouse X"),Input.GetAxisRaw("Mouse Y"));
+        mouseDirection += mouseChange * mouseSensibility;
+        mainCamera.transform.localRotation = Quaternion.AngleAxis(-mouseDirection.y,Vector3.right);
+        transform.localRotation = Quaternion.AngleAxis(mouseDirection.x,Vector3.up);
 
-		transform.Translate(0, 0, translation);
-		transform.Rotate(0, rotation, 0);
 
-		if(translation != 0)
-		{
-			anim.SetInteger("PlayerActions", 1);
-		}
-		/* 
-		if(Input.GetKey(KeyCode.UpArrow))
-		{
-			Debug.Log("arriba");
-			anim.SetInteger("PlayerActions", 1);
-		}	*/
-		else
-		{
-			anim.SetInteger("PlayerActions", 0);
-		}
+        if(controller.isGrounded)
+        {
+            float translation = Input.GetAxis("Vertical");
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,translation);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+            if(Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
 
-/* 
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+            if(translation != 0)
+            {
+                anim.SetInteger("PlayerActions", 1);
+            }
 
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);*/
-
-        if (Input.GetKeyDown(KeyCode.Space))
+            else
+            {
+                anim.SetInteger("PlayerActions", 0);
+            }
+        }
+        else 
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+        
+        controller.Move(moveDirection * Time.deltaTime);
+        
+    		
+        if (Input.GetMouseButton(0))
         {
             CmdFire();
         }
