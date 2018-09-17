@@ -235,8 +235,8 @@ MonoBehaviour:
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: 
-  m_OnlineScene: 
+  m_OfflineScene: Main
+  m_OnlineScene: gameScene
   m_SpawnPrefabs:
   - {fileID: 1225017341675676, guid: a0d43a7e1f9007a4898c28ea0079985e, type: 2}
   m_CustomConfig: 1
@@ -369,58 +369,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1638312364
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4277114496496544, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224823536354126896, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 224823536354126896, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2d050bdf21c4e944eb1b78a97c1e0ca3, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1671246355
 GameObject:
   m_ObjectHideFlags: 0
