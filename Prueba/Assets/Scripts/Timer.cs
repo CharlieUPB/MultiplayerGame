@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Timer : NetworkBehaviour {
 
 	public Text timerText;
@@ -17,6 +19,8 @@ public class Timer : NetworkBehaviour {
 	Timer serverTimer;
 	// Use this for initialization
 	void Start () {
+
+		timerText.enabled = false;
 		if(isServer) 
 		{
 			if(isLocalPlayer)
@@ -40,35 +44,40 @@ public class Timer : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(masterTimer) 
+
+		if(SceneManager.GetActiveScene().name.Equals("gameScene")) 
 		{
-			startTime -= Time.deltaTime;
-			minutes = (int)(startTime / 60);
-			seconds = (int)(startTime - (60*minutes));
-			if(startTime < 0) {
-				gameOver = true;
-			}
-		}
-		if(isLocalPlayer) {
-			if(serverTimer)
+			timerText.enabled = true;
+			if(masterTimer) 
 			{
-				startTime = serverTimer.startTime;
-				minutes = serverTimer.minutes;
-				seconds = serverTimer.seconds;
-				gameOver = serverTimer.gameOver;
-			}
-			else 
-			{
-				Timer[] timers = FindObjectsOfType<Timer>();
-				for(int i =0; i<timers.Length; i++)
-				{
-					if(timers[i].masterTimer)
-					{
-						serverTimer = timers[i];
-					}
+				startTime -= Time.deltaTime;
+				minutes = (int)(startTime / 60);
+				seconds = (int)(startTime - (60*minutes));
+				if(startTime < 0) {
+					gameOver = true;
 				}
 			}
-			timerText.text =  "Time Left: " + minutes + ":" + seconds;
-		}
+			if(isLocalPlayer) {
+				if(serverTimer)
+				{
+					startTime = serverTimer.startTime;
+					minutes = serverTimer.minutes;
+					seconds = serverTimer.seconds;
+					gameOver = serverTimer.gameOver;
+				}
+				else 
+				{
+					Timer[] timers = FindObjectsOfType<Timer>();
+					for(int i =0; i<timers.Length; i++)
+					{
+						if(timers[i].masterTimer)
+						{
+							serverTimer = timers[i];
+						}
+					}
+				}
+				timerText.text =  "Time Left: " + minutes + ":" + seconds;
+			}
+		}		
 	}
 }
