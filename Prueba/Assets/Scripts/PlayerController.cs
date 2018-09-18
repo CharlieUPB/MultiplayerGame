@@ -17,7 +17,7 @@ public class PlayerController : NetworkBehaviour
 
     public float gravity = 20.0f;
 
-    public CharacterController controller;
+    private CharacterController controller;
 
     private Vector3 moveDirection = Vector3.zero;
 
