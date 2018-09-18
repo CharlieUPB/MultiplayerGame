@@ -11,18 +11,15 @@ public class PlayerController : NetworkBehaviour
     public Text numberOfPlayers;
 
     static Animator anim;
+
 	public float speed = 15.0f;
-
     public float jumpSpeed = 100.0f;
-
     public float gravity = 20.0f;
 
     private CharacterController controller;
 
     private Vector3 moveDirection = Vector3.zero;
-
     private Vector2 mouseDirection;
-
     private Camera mainCamera;
 
     public float mouseSensibility = 5.0f;
@@ -121,6 +118,8 @@ public class PlayerController : NetworkBehaviour
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 2.0f);
     }
+
+    
 
     public override void OnStartLocalPlayer ()
     {
