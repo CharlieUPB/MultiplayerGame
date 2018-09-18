@@ -10,6 +10,8 @@ public class PlayerController : NetworkBehaviour
 
     public Text numberOfPlayers;
 
+    public Text playerName;
+
     static Animator anim;
 
 	public float speed = 15.0f;

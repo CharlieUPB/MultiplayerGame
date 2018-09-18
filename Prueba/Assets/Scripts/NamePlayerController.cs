@@ -34,7 +34,6 @@ public class NamePlayerController : NetworkBehaviour {
             if(isServer)
             {
                 ButtonStart.SetActive(true);
-                changeScene();
             }
         }
         else
@@ -46,6 +45,10 @@ public class NamePlayerController : NetworkBehaviour {
 
     public void changeScene()
     {
-        NetworkManager.singleton.ServerChangeScene("gameScene");
+        if(isServer) 
+        {
+            NetworkManager.singleton.ServerChangeScene("gameScene");
+        }
+        
     }
 }
