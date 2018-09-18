@@ -13,6 +13,9 @@ public class Timer : NetworkBehaviour {
 	public AudioClip gameLoadingSound;
     private AudioSource StartedGame;
 	private AudioSource LoadingGame;
+
+	private bool onLoadScene = false;
+	private bool onGameScene = false;
 	[SyncVar] public float startTime = 0.0f;
 	[SyncVar] public int minutes;
 	[SyncVar] public int seconds;
@@ -54,13 +57,22 @@ public class Timer : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(SceneManager.GetActiveScene().name.Equals("LoadScene")) {
-			LoadingGame.PlayOneShot(this.gameLoadingSound,1F);
+		if(!onLoadScene) {
+			onLoadScene = true;
+			if(SceneManager.GetActiveScene().name.Equals("LoadScene")) {
+				LoadingGame.PlayOneShot(this.gameLoadingSound,1F);
+			}
 		}
+		if(!onGameScene) {
+			onGameScene = true;
+			if(SceneManager.GetActiveScene().name.Equals("gameScene")) {
+				this.StartedGame.PlayOneShot(this.gameStartedSound,1F);
+			} 
+		}
+		
 
 		if(SceneManager.GetActiveScene().name.Equals("gameScene")) 
 		{
-			this.StartedGame.PlayOneShot(this.gameStartedSound,1F);
 			timerText.enabled = true;
 			if(masterTimer) 
 			{
@@ -68,6 +80,7 @@ public class Timer : NetworkBehaviour {
 				minutes = (int)(startTime / 60);
 				seconds = (int)(startTime - (60*minutes));
 				if(startTime < 0) {
+					NetworkServer.DisconnectAll();
 					gameOver = true;
 				}
 			}
