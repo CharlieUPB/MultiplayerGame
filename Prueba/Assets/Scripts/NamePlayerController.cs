@@ -34,6 +34,7 @@ public class NamePlayerController : NetworkBehaviour {
             if(isServer)
             {
                 ButtonStart.SetActive(true);
+                changeScene();
             }
         }
         else
@@ -41,5 +42,10 @@ public class NamePlayerController : NetworkBehaviour {
             MessaggeWait.text = "Enter a nickname!";
             MessaggeWait.enabled = true;
         }
+    }
+
+    public void changeScene()
+    {
+        NetworkManager.singleton.ServerChangeScene("gameScene");
     }
 }
