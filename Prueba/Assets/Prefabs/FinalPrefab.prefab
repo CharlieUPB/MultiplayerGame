@@ -2863,6 +2863,7 @@ MonoBehaviour:
   btnReady: {fileID: 1072142286203496}
   ButtonStart: {fileID: 1163188476202014}
   MessaggeWait: {fileID: 114411169028804070}
+  playerNickName: {fileID: 114742790373042158}
 --- !u!114 &114700929071089752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3278,9 +3279,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4949017231971806}
   playerCamera: {fileID: 1487419734650978}
   numberOfPlayers: {fileID: 114858608639904206}
-  playerName: {fileID: 114742790373042158}
-  inputPlayerName: {fileID: 114700929071089752}
-  shootSound: {fileID: 8300000, guid: ab314d9afa4b35148bcc3bf5d7bb9a92, type: 3}
+  shootSound: {fileID: 8300000, guid: 8ea6186b682a82a43b7665d4f634dcca, type: 3}
   speed: 10
   jumpSpeed: 17
   gravity: 30

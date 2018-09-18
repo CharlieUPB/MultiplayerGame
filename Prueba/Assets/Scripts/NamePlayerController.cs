@@ -11,6 +11,8 @@ public class NamePlayerController : NetworkBehaviour {
     public GameObject ButtonStart;
     public Text MessaggeWait;
 
+    public Text playerNickName;
+
 	// Use this for initialization
 	void Start () 
 	{

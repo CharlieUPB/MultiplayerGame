@@ -10,9 +10,6 @@ public class PlayerController : NetworkBehaviour
 
     public Text numberOfPlayers;
 
-    public Text playerName;
-    public InputField inputPlayerName;
-
     public AudioClip shootSound;
 
     private AudioSource source;
