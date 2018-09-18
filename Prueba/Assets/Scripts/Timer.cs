@@ -8,6 +8,11 @@ using UnityEngine.SceneManagement;
 public class Timer : NetworkBehaviour {
 
 	public Text timerText;
+	public AudioClip gameStartedSound;
+
+	public AudioClip gameLoadingSound;
+    private AudioSource StartedGame;
+	private AudioSource LoadingGame;
 	[SyncVar] public float startTime = 0.0f;
 	[SyncVar] public int minutes;
 	[SyncVar] public int seconds;
@@ -19,6 +24,10 @@ public class Timer : NetworkBehaviour {
 	Timer serverTimer;
 	// Use this for initialization
 	void Start () {
+
+		AudioSource[] audios = GetComponents<AudioSource>();
+		LoadingGame = audios[1];
+		StartedGame = audios[2];
 
 		timerText.enabled = false;
 		if(isServer) 
@@ -45,8 +54,13 @@ public class Timer : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if(SceneManager.GetActiveScene().name.Equals("LoadScene")) {
+			LoadingGame.PlayOneShot(this.gameLoadingSound,1F);
+		}
+
 		if(SceneManager.GetActiveScene().name.Equals("gameScene")) 
 		{
+			this.StartedGame.PlayOneShot(this.gameStartedSound,1F);
 			timerText.enabled = true;
 			if(masterTimer) 
 			{
