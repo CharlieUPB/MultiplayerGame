@@ -30,6 +30,8 @@ public class NamePlayerController : NetworkBehaviour {
         if(PlayerName.text != "")
         {
             btnReady.SetActive(false);
+            
+            playerNickName.text = PlayerName.text;
             MessaggeWait.text = "Waiting for host...";
             MessaggeWait.enabled = true;
             
