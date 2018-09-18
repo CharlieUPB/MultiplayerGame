@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class NamePlayerController : NetworkBehaviour {
 
@@ -10,8 +11,9 @@ public class NamePlayerController : NetworkBehaviour {
     public GameObject btnReady;
     public GameObject ButtonStart;
     public Text MessaggeWait;
-
     public Text playerNickName;
+    public string name;
+
 
 	// Use this for initialization
 	void Start () 
@@ -21,8 +23,24 @@ public class NamePlayerController : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+    {
+        name = PlayerName.text;
+        playerNickName.text = name;
+        
+        if(SceneManager.GetActiveScene().name.Equals("gameScene")) 
+        {
+            PlayerName.DeactivateInputField();
+            
+            PlayerName.enabled = false;
+            btnReady.SetActive(false);
+            MessaggeWait.enabled = false;
+    
+            if(isServer)
+            {
+                ButtonStart.SetActive(false);
+            }
+	    }
 	}
 
 	public void BtnIAmReady()
@@ -30,8 +48,8 @@ public class NamePlayerController : NetworkBehaviour {
         if(PlayerName.text != "")
         {
             btnReady.SetActive(false);
-            
-            playerNickName.text = PlayerName.text;
+            name = PlayerName.text;
+            playerNickName.text = name;
             MessaggeWait.text = "Waiting for host...";
             MessaggeWait.enabled = true;
             
