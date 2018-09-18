@@ -28,12 +28,18 @@ public class NamePlayerController : NetworkBehaviour {
         if(PlayerName.text != "")
         {
             btnReady.SetActive(false);
+            MessaggeWait.text = "Waiting for host...";
             MessaggeWait.enabled = true;
             
             if(isServer)
             {
                 ButtonStart.SetActive(true);
             }
+        }
+        else
+        {
+            MessaggeWait.text = "Enter a nickname!";
+            MessaggeWait.enabled = true;
         }
     }
 }
