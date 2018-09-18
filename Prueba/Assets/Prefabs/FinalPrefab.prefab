@@ -3279,6 +3279,8 @@ MonoBehaviour:
   playerCamera: {fileID: 1487419734650978}
   numberOfPlayers: {fileID: 114858608639904206}
   playerName: {fileID: 114742790373042158}
+  inputPlayerName: {fileID: 114700929071089752}
+  shootSound: {fileID: 8300000, guid: ab314d9afa4b35148bcc3bf5d7bb9a92, type: 3}
   speed: 10
   jumpSpeed: 17
   gravity: 30

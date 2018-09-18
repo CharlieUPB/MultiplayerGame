@@ -11,6 +11,11 @@ public class PlayerController : NetworkBehaviour
     public Text numberOfPlayers;
 
     public Text playerName;
+    public InputField inputPlayerName;
+
+    public AudioClip shootSound;
+
+    private AudioSource source;
 
     static Animator anim;
 
@@ -33,6 +38,7 @@ public class PlayerController : NetworkBehaviour
     {
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        source = GetComponent<AudioSource>();
         mainCamera = Camera.main;
 
         if (isLocalPlayer) 
@@ -96,6 +102,7 @@ public class PlayerController : NetworkBehaviour
     		
         if (Input.GetMouseButton(0))
         {
+            source.PlayOneShot(shootSound,1F);
             CmdFire();
         }
     }
